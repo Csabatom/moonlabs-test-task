@@ -1,31 +1,31 @@
 <div class="text-center">
     <h1>Kódfeltöltés</h1>
-    <form>
+    <form [formGroup]="reactiveForm" (ngSubmit)="codeUpload()">
         <div class="form-group">
             <label for="inputEmail">E-MAIL CÍM:</label>
-            <input type="text" class="form-control" id="inputEmail">
+            <input type="text" class="form-control" id="inputEmail" formControlName="email">
         </div>
         <div class="form-group">
             <label for="inputCode">KÓD:</label>
-            <input type="text" class="form-control" id="inputCode">
+            <input type="text" class="form-control" id="inputCode" formControlName="code">
         </div>
-        <div class="mt-5">
+        <div class="mt-5" formGroupName="purchaseTime">
             <h5>VÁSÁRLÁS DÁTUMA:</h5>
             <div class="d-inline">
                 <label for="selectDate">NAP:</label>
-                <select class="form-select" id="selectDate">
-                    <option *ngFor="let date of dates" value="{{date}}">{{ this.datepipe.transform(date, 'yyyy.MM.dd') }}</option>
+                <select class="form-select" id="selectDate" formControlName="date">
+                    <option *ngFor="let date of dates" [selected]="this.isToday(date)">{{ this.datepipe.transform(date, 'yyyy-MM-dd') }}</option>
                 </select>
             </div>
             <label for="selectHour">ÓRA:</label>
-            <select class="form-select" id="selectHour">
-                <option *ngFor="let hour of time" value="{{hour}}">{{ hour }}</option>
+            <select class="form-select" id="selectHour" formControlName="hour">
+                <option *ngFor="let hour of time" [value]="hour.toString().length == 1 ? '0' + hour : hour">{{ hour }}</option>
             </select>
             <label for="selectMinutes">PERC:</label>
-            <select class="form-select" id="selectMinutes">
-                <option *ngFor="let second of time" value="{{second}}">{{ second }}</option>
+            <select class="form-select" id="selectMinutes" formControlName="minute">
+                <option *ngFor="let minute of time" [value]="minute.toString().length == 1 ? '0' + minute : minute">{{ minute }}</option>
             </select>
         </div>
-        <input type="submit" class="btn btn-primary rounded-pill mt-4 w-100" value="Kódfeltöltés">
+        <button type="submit" class="btn btn-primary rounded-pill mt-4 w-100">Kódfeltöltés</button>
     </form>
 </div>

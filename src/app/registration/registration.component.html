@@ -1,18 +1,18 @@
 <div class="text-center">
     <h1>Regisztráció</h1>
-    <form>
+    <form [formGroup]="reactiveForm" (ngSubmit)="registration()">
         <div class="form-group">
             <label for="inputEmail">E-MAIL CÍM:</label>
-            <input type="text" class="form-control" id="inputEmail">
+            <input type="text" class="form-control" id="inputEmail" formControlName="email">
         </div>
         <div class="form-group">
             <label for="inputName">NÉV:</label>
-            <input type="text" class="form-control" id="inputName">
+            <input type="text" class="form-control" id="inputName" formControlName="name">
         </div>
         <div class="mt-3">
-            <input type="checkbox" id="checkboxAccept">
+            <input type="checkbox" id="checkboxAccept" formControlName="checkbox">
             <label for="checkboxAccept">Elolvastam és elfogadom a játékszabályzatot</label>
         </div>
-        <input type="submit" class="btn btn-primary rounded-pill mt-4 w-100" value="Regisztrálok">
+        <button type="submit" class="btn btn-primary rounded-pill mt-4 w-100" [disabled]="!reactiveForm.controls['checkbox'].value">Regisztrálok</button>
     </form>
 </div>
