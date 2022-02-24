@@ -7,11 +7,12 @@ import { firstValueFrom, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HttpRequestsService {
+  private url = "https://ncp.staging.moonproject.io/api/nyiro-marcell-csaba";
 
   constructor(private httpClient: HttpClient) { }
   
   async codeUpload(payload: CodeUploadPayload, options?: Object): Promise<Response> {
-    let response = await firstValueFrom(this.httpClient.post<Response>("https://ncp.staging.moonproject.io/api/nyiro-marcell/code/upload", JSON.stringify(payload), options)).catch((err: HttpErrorResponse) => {
+    let response = await firstValueFrom(this.httpClient.post<Response>(`${this.url}/code/upload`, JSON.stringify(payload), options)).catch((err: HttpErrorResponse) => {
       let response: Response = {errors: []};
       err.error.errors.forEach(function(error: any) {
         response.errors.push({code: error.code, source: error.source.parameters[0]})
@@ -23,7 +24,7 @@ export class HttpRequestsService {
   }
 
   async registration(payload: RegistrationPayload, options?: Object): Promise<Response> {
-    let response = await firstValueFrom(this.httpClient.post<Response>("https://ncp.staging.moonproject.io/api/nyiro-marcell/user/register", JSON.stringify(payload), options)).catch((err: HttpErrorResponse) => {
+    let response = await firstValueFrom(this.httpClient.post<Response>(`${this.url}/user/register`, JSON.stringify(payload), options)).catch((err: HttpErrorResponse) => {
       let response: Response = {errors: []};
       err.error.errors.forEach(function(error: any) {
         response.errors.push({code: error.code, source: error.source.parameters[0]})
