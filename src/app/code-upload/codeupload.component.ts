@@ -14,7 +14,8 @@ import { CodeUploadPayload, NavigationRegistrationData, Response } from '../inte
 })
 export class CodeUploadComponent {
   dates = this.getDates(new Date(2022, 1, 1), new Date(2022, 3, 1));
-  time = Array.from(Array(60).keys());
+  hours = Array.from(Array(24).keys())
+  minutes = Array.from(Array(60).keys());
   reactiveForm = new FormGroup({
     email: new FormControl('', [Validators.email, Validators.required]),
     code: new FormControl('', [Validators.min(8), Validators.max(8), Validators.required]),

@@ -19,11 +19,11 @@
             </div>
             <label for="selectHour">ÓRA:</label>
             <select class="form-select" id="selectHour" formControlName="hour">
-                <option *ngFor="let hour of time" [value]="hour.toString().length == 1 ? '0' + hour : hour">{{ hour }}</option>
+                <option *ngFor="let hour of hours" [value]="hour.toString().length == 1 ? '0' + hour : hour">{{ hour }}</option>
             </select>
             <label for="selectMinutes">PERC:</label>
             <select class="form-select" id="selectMinutes" formControlName="minute">
-                <option *ngFor="let minute of time" [value]="minute.toString().length == 1 ? '0' + minute : minute">{{ minute }}</option>
+                <option *ngFor="let minute of minutes" [value]="minute.toString().length == 1 ? '0' + minute : minute">{{ minute }}</option>
             </select>
         </div>
         <button type="submit" class="btn btn-primary rounded-pill mt-4 w-100">Kódfeltöltés</button>
